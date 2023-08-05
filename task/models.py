@@ -33,11 +33,13 @@ class Tag(models.Model):
     def __str__(self):
         return self.name
 
+
 class Attachment(models.Model):
     file = models.FileField(upload_to='attachments/')
-    
+
     def __str__(self):
         return self.file.name
+
 
 class Task(models.Model):
     PRIORITY_CHOICES = (
@@ -63,7 +65,6 @@ class Task(models.Model):
     status = models.CharField(
         max_length=20, choices=STATUS_CHOICES, default='not_started')
     assigned_to = models.ForeignKey(User, on_delete=models.CASCADE)
-    creation_date = models.DateTimeField(auto_now_add=True)
     completion_date = models.DateTimeField(null=True, blank=True)
     tags = models.ManyToManyField('Tag', related_name='tasks', blank=True)
     notes = models.TextField(blank=True)
