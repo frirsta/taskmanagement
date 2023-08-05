@@ -35,9 +35,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [os.environ.get('ALLOWED_HOST'),
+                 'localhost', '127.0.0.1', "localhost:3000",]
 
 
 # Application definition
@@ -52,8 +53,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'cloudinary',
     'rest_framework',
-    'rest_framework.authtoken',
     'django_filters',
+    'rest_framework.authtoken',
     'dj_rest_auth',
     'django.contrib.sites',
     'allauth',
@@ -77,6 +78,23 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 10,
     'DATETIME_FORMAT': '%d %b %Y',
 }
+
+REST_USE_JWT = True
+JWT_AUTH_SECURE = True
+JWT_AUTH_COOKIE = 'jwt-auth'
+JWT_AUTH_REFRESH_COOKIE = 'my-refresh-token'
+JWT_AUTH_SAMESITE = 'None'
+
+CORS_ALLOW_CREDENTIALS = True
+
+CORS_ALLOWED_ORIGINS = [
+    "https://mytasksdashboard-18cce974c8fe.herokuapp.com",
+    "http://localhost:3000",
+]
+CSRF_TRUSTED_ORIGINS = [
+    "https://mytasksdashboard-18cce974c8fe.herokuapp.com",
+    "http://localhost:3000",
+]
 
 REST_AUTH_SERIALIZERS = {
     'USER_DETAILS_SERIALIZER': 'api.serializers.CurrentUserSerializer'
