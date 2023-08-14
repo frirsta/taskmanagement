@@ -35,7 +35,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [os.environ.get('ALLOWED_HOST'),
                  'localhost', '127.0.0.1', "localhost:3000",]
@@ -141,6 +141,7 @@ WSGI_APPLICATION = 'api.wsgi.application'
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
+
 
 DATABASES = {
     'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
