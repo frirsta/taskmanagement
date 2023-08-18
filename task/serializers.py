@@ -13,7 +13,7 @@ class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
         fields = ['owner', 'is_owner', 'id',
-                  'created_date', 'updated_date', 'bio', 'profile_id']
+                  'created_date', 'updated_date', 'bio']
 
 
 class TagSerializer(serializers.ModelSerializer):
